@@ -1,12 +1,11 @@
 @Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kspPlugin)
+    alias(libs.plugins.kotlinAndroid)
 }
 
 android {
-    namespace = "com.smogunov.foods.data"
+    namespace = "com.smogunov.di"
     compileSdk = 33
 
     defaultConfig {
@@ -26,16 +25,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "1.8"
     }
 }
 
 dependencies {
     implementation(project(":domain"))
+
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -43,7 +43,5 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
-    implementation(libs.room.runtime)
-    ksp(libs.room.compiler)
-    implementation(libs.room.ktx)
+    implementation(libs.koin.android)
 }

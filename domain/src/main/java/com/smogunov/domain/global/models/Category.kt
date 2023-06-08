@@ -1,4 +1,4 @@
-package com.smogunov.foods.data.db
+package com.smogunov.domain.global.models
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

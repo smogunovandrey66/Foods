@@ -13,6 +13,7 @@ navigation-ui-ktx = "2.5.3"
 annotation = "1.6.0"
 room-version = "2.5.0"
 ksp-version = "1.8.0-1.0.9"
+koin-android = "3.3.3"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -29,6 +30,8 @@ annotation = { group = "androidx.annotation", name = "annotation", version.ref =
 room-ktx = {group = "androidx.room", name = "room-ktx", version.ref = "room-version"}
 room-compiler = {module = "androidx.room:room-compiler", version.ref = "room-version"}
 room-runtime = {module = "androidx.room:room-runtime", version.ref = "room-version"}
+
+koin-android = {group = "io.insert-koin", name = "koin-android", version.ref = "koin-android"}
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
