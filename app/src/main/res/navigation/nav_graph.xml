@@ -3,26 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/item_category">
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.smogunov.foods.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+        android:id="@+id/item_category"
+        android:name="com.smogunov.foods.ui.CategoryFragment"
+        android:label="@string/Category"
+        tools:layout="@layout/fragment_category">
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.smogunov.foods.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+        android:id="@+id/item_search"
+        android:name="com.smogunov.foods.ui.InWorkingFragment"
+        android:label="@string/Search"
+        tools:layout="@layout/fragment_in_working">
     </fragment>
+    <fragment
+        android:id="@+id/item_cart"
+        android:name="com.smogunov.foods.ui.CartFragment"
+        android:label="@string/Cart"
+        tools:layout="@layout/fragment_cart"/>
+    <fragment
+        android:id="@+id/item_profile"
+        android:name="com.smogunov.foods.ui.InWorkingFragment"
+        android:label="@string/Profile"
+        tools:layout="@layout/fragment_in_working"/>
 </navigation>
