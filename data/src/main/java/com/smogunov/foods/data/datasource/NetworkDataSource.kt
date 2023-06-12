@@ -1,7 +1,10 @@
 package com.smogunov.foods.data.datasource
 
-import com.smogunov.domain.global.models.Category
+import com.smogunov.domain.global.models.network.CategoryNetwork
+import com.smogunov.domain.global.models.network.DishesNetwork
 
 interface NetworkDataSource {
-    suspend fun load(): List<Category>
+    suspend fun loadCategory(): CategoryNetwork
+
+    suspend fun loadDishes(): DishesNetwork
 }

@@ -42,6 +42,7 @@ android {
 dependencies {
     implementation(project(":di"))
     implementation(project(":domain"))
+    implementation(project(":data"))
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -53,5 +54,6 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
 
     implementation(libs.koin.android)
-
+    implementation(libs.androidx.lifecycle)
+    implementation(libs.glide)
 }
