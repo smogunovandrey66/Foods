@@ -1,5 +1,7 @@
 package com.smogunov.domain.global.models.presentation
 
+import kotlin.Int
+
 /**
  * Информация о категории для слоя Presentation
  */

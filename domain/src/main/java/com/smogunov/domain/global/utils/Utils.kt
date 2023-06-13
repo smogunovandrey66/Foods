@@ -1,4 +1,4 @@
-package com.smogunov.foods.utils
+package com.smogunov.domain.global.utils
 
 import android.util.Log
 

@@ -27,16 +27,16 @@ class DishesAdapter(private val dishes: List<Dish>, private val onClickDish: (Di
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemDishViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: kotlin.Int): ItemDishViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_dish, parent, false)
         return ItemDishViewHolder(view, onClickDish)
     }
 
-    override fun getItemCount(): Int {
+    override fun getItemCount(): kotlin.Int {
         return dishes.size
     }
 
-    override fun onBindViewHolder(holder: ItemDishViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ItemDishViewHolder, position: kotlin.Int) {
         val dish = dishes[position]
         holder.dish = dish
         holder.caption.text = dish.name

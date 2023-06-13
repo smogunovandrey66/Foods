@@ -11,7 +11,7 @@ data class Dish(
 
 data class TagWithDishes(
     val tagName: String,
-    val dishes: List<Dish>
+    val dishes: List<Int>
 )
 
 data class Tag(

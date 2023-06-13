@@ -13,13 +13,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smogunov.domain.global.models.presentation.Dish
 import com.smogunov.domain.global.models.presentation.Tag
-import com.smogunov.domain.global.models.presentation.TagWithDishes
 import com.smogunov.domain.global.resultdata.ResultData
-import com.smogunov.foods.R
-import com.smogunov.foods.databinding.DialogDishItemBinding
 import com.smogunov.foods.databinding.FragmentDishesBinding
 import com.smogunov.foods.model.DishesViewModel
-import com.smogunov.foods.utils.log
+import com.smogunov.domain.global.utils.log
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
@@ -106,12 +103,6 @@ class DishesFragment : Fragment() {
         }
 
         dishesViewModel.load(false, "Все меню")
-
-
-
-//        binding.buttonSecond.setOnClickListener {
-//            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
-//        }
     }
 
     override fun onDestroyView() {

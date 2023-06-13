@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/item_cart"
-        android:name="com.smogunov.foods.ui.CartFragment"
+        android:name="com.smogunov.foods.ui.cart.CartFragment"
         android:label="@string/Cart"
         tools:layout="@layout/fragment_cart"/>
     <fragment

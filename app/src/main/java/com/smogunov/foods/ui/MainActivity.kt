@@ -2,23 +2,12 @@ package com.smogunov.foods.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.smogunov.domain.global.models.presentation.Category
-import com.smogunov.domain.global.resultdata.ResultData
 import com.smogunov.foods.R
 import com.smogunov.foods.databinding.ActivityMainBinding
-import com.smogunov.foods.model.CategoriesViewModel
-import com.smogunov.foods.utils.log
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
+import com.smogunov.domain.global.utils.log
 
 class MainActivity : AppCompatActivity() {
 

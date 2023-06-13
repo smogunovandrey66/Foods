@@ -16,8 +16,7 @@ data class DishDB (
     val weight: Int,
     val description: String,
     @ColumnInfo(name = "image_url")
-    val imageUrl: String//,
-//    val tags: List<String>
+    val imageUrl: String
 )
 
 @Entity("tags")

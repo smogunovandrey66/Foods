@@ -5,6 +5,7 @@ import com.smogunov.di.databaseModule
 import com.smogunov.di.mainModule
 import com.smogunov.di.networkModule
 import com.smogunov.di.usecaseModule
+import com.smogunov.foods.model.CartViewModel
 import com.smogunov.foods.model.CategoriesViewModel
 import com.smogunov.foods.model.DishesViewModel
 import org.koin.android.ext.koin.androidContext
@@ -18,6 +19,9 @@ val presentationModule = module {
     }
     single {
         CategoriesViewModel(get())
+    }
+    single {
+        CartViewModel(get())
     }
 }
 

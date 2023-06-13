@@ -13,7 +13,7 @@ import com.smogunov.domain.global.models.presentation.Category
 import com.smogunov.domain.global.resultdata.ResultData
 import com.smogunov.foods.databinding.FragmentCategoryBinding
 import com.smogunov.foods.model.CategoriesViewModel
-import com.smogunov.foods.utils.log
+import com.smogunov.domain.global.utils.log
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
