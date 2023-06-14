@@ -8,8 +8,11 @@ import com.smogunov.domain.global.models.database.DishDB
 import com.smogunov.domain.global.models.database.DishTagCrossRefDB
 import com.smogunov.domain.global.models.database.TagDB
 
-@Database([CategoryDB::class, DishDB::class, TagDB::class, DishTagCrossRefDB::class, CartItemDB::class], version = 1)
-abstract class FoodDataBase: RoomDatabase() {
+@Database(
+    [CategoryDB::class, DishDB::class, TagDB::class, DishTagCrossRefDB::class, CartItemDB::class],
+    version = 1
+)
+abstract class FoodDataBase : RoomDatabase() {
     abstract fun categoryDao(): CategoryDao
 
     abstract fun dishDao(): DishDao

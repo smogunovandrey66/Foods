@@ -24,7 +24,11 @@ class LocalDataSourceImpl(private val dataBase: FoodDataBase) : LocalDataSource 
     override suspend fun getTagswithDishes(tag: String): List<TagWithDishesDB> =
         dataBase.dishDao().getTagsByName(tag)
 
-    override suspend fun insertDishesTagAndCrossRef(dishes: List<DishDB>, tags: List<TagDB>, crossRefDB: List<DishTagCrossRefDB>) {
+    override suspend fun insertDishesTagAndCrossRef(
+        dishes: List<DishDB>,
+        tags: List<TagDB>,
+        crossRefDB: List<DishTagCrossRefDB>
+    ) {
         Log.d("GLOBAL_TAG_LOG", "LocalDataSourceImpl insertDishesAndTag dishes=$dishes,tags=$tags")
         dataBase.dishDao().clearTags()
         dataBase.dishDao().insertTags(tags)
@@ -36,12 +40,12 @@ class LocalDataSourceImpl(private val dataBase: FoodDataBase) : LocalDataSource 
         dataBase.dishDao().insertDishTagRef(crossRefDB)
     }
 
-    override suspend fun getTags(): List<TagDB>  = dataBase.dishDao().getAllTags()
+    override suspend fun getTags(): List<TagDB> = dataBase.dishDao().getAllTags()
 
     override suspend fun getAllCartItems(): List<DishWithCartItemDB> {
         log("LocalDataSourceImpl getAllCartItems before")
         val cartItemDB = dataBase.cartDao().getCartItems()
-        for(item in cartItemDB){
+        for (item in cartItemDB) {
             log("LocalDataSourceImpl getAllCartItems item=$item")
         }
         log("LocalDataSourceImpl getAllCartItems cartItemDB=$cartItemDB")
@@ -53,9 +57,9 @@ class LocalDataSourceImpl(private val dataBase: FoodDataBase) : LocalDataSource 
         log("LocalDataSourceImpl changeCartItem cartItemDB=$cartItemDB,count=$count")
 
         //Уже есть запись
-        if(cartItemDB != null) {
+        if (cartItemDB != null) {
             //Добавляем
-            if(count > 0) {
+            if (count > 0) {
                 val newCartItemDB = CartItemDB(cartItemDB.idCart, idDish, cartItemDB.count + count)
                 dataBase.cartDao().updateCartItem(newCartItemDB)
                 log("LocalDataSourceImpl changeCartItem update cartItem(add)")
@@ -63,7 +67,7 @@ class LocalDataSourceImpl(private val dataBase: FoodDataBase) : LocalDataSource 
                 //Новое уменьшенное значение
                 val newCountDishes = cartItemDB.count + count
                 //Уменьшаем до адекватного значения
-                if(newCountDishes > 0) {
+                if (newCountDishes > 0) {
                     val newCartItemDB = CartItemDB(cartItemDB.idCart, idDish, newCountDishes)
                     dataBase.cartDao().updateCartItem(newCartItemDB)
                     log("LocalDataSourceImpl changeCartItem update cartItem(remove)")
@@ -75,7 +79,7 @@ class LocalDataSourceImpl(private val dataBase: FoodDataBase) : LocalDataSource 
             }
         } else { //Записи нет
             //И изменяем в сторону увеличения
-            if(count > 0) {
+            if (count > 0) {
                 val newCartItemDB = CartItemDB(0, idDish, count)
                 dataBase.cartDao().addCartItem(newCartItemDB)
                 log("LocalDataSourceImpl changeCartItem add")

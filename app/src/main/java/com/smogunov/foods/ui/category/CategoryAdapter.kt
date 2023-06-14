@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -13,17 +12,21 @@ import com.bumptech.glide.Glide
 import com.smogunov.domain.global.models.presentation.Category
 import com.smogunov.foods.R
 
-class CategoryAdapter(private val categories: List<Category>):
+/**
+ * Адаптер для категорий
+ */
+class CategoryAdapter(private val categories: List<Category>) :
     RecyclerView.Adapter<CategoryAdapter.ItemCategoryViewHolder>() {
-    class ItemCategoryViewHolder(view: View): RecyclerView.ViewHolder(view) {
+    class ItemCategoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val image: ImageView
         val text: TextView
         var category: Category? = null
+
         init {
             image = view.findViewById(R.id.img_category)
             text = view.findViewById(R.id.tv_name_category)
-            view.setOnClickListener{
-                val args = if(category != null)
+            view.setOnClickListener {
+                val args = if (category != null)
                     bundleOf("nameCategory" to category!!.name)
                 else
                     null
@@ -33,7 +36,8 @@ class CategoryAdapter(private val categories: List<Category>):
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemCategoryViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_category, parent, false)
         return ItemCategoryViewHolder(view)
     }
 

@@ -13,7 +13,10 @@ import com.smogunov.foods.data.datasource.NetworkDataSource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class DishRepositoryImpl(private val networkDataSource: NetworkDataSource, private val localDataSource: LocalDataSource): DishRepository {
+class DishRepositoryImpl(
+    private val networkDataSource: NetworkDataSource,
+    private val localDataSource: LocalDataSource
+) : DishRepository {
 
     private val _dishes: MutableStateFlow<ResultData> = MutableStateFlow(ResultData.Loading)
     private val _tags: MutableStateFlow<ResultData> = MutableStateFlow(ResultData.Loading)
@@ -26,7 +29,7 @@ class DishRepositoryImpl(private val networkDataSource: NetworkDataSource, priva
     override suspend fun load(useCash: Boolean, tag: String) {
         try {
             Log.d("GLOBAL_TAG_LOG", "DishRepositoryImpl load before,useCash=$useCash")
-            if(!useCash) {
+            if (!useCash) {
                 val setTagsDB: MutableSet<String> = mutableSetOf()
                 val dishesNetwork = networkDataSource.loadDishes().dishes.filter {
                     it.imageUrl != null && it.name != null
@@ -34,13 +37,21 @@ class DishRepositoryImpl(private val networkDataSource: NetworkDataSource, priva
                 Log.d("GLOBAL_TAG_LOG", "DishRepositoryImpl load count=${dishesNetwork.count()}")
                 dishesNetwork.forEach {
                     val boolean = it.imageUrl == null
-                    Log.d("GLOBAL_TAG_LOG", "DishRepositoryImpl load imageUrlNull=$boolean, dishesItem=$it")
+                    Log.d(
+                        "GLOBAL_TAG_LOG",
+                        "DishRepositoryImpl load imageUrlNull=$boolean, dishesItem=$it"
+                    )
                 }
                 val listDishTagCrossRefDB: MutableList<DishTagCrossRefDB> = mutableListOf()
-                val dishesDB = dishesNetwork.map{ dishesNetworkItem ->
-                    dishesNetworkItem.tags?.forEach {tagName ->
+                val dishesDB = dishesNetwork.map { dishesNetworkItem ->
+                    dishesNetworkItem.tags?.forEach { tagName ->
                         setTagsDB.add(tagName)
-                        listDishTagCrossRefDB.add(DishTagCrossRefDB(dishesNetworkItem.id ?: 0, tagName))
+                        listDishTagCrossRefDB.add(
+                            DishTagCrossRefDB(
+                                dishesNetworkItem.id ?: 0,
+                                tagName
+                            )
+                        )
                     }
                     DishDB(
                         dishesNetworkItem.id ?: 0,
@@ -56,13 +67,21 @@ class DishRepositoryImpl(private val networkDataSource: NetworkDataSource, priva
                     TagDB(it)
                 }, listDishTagCrossRefDB)
             }
-            val dishesDB = localDataSource.getTagswithDishes(tag).firstOrNull()?.dishesDB ?: emptyList()
+            val dishesDB =
+                localDataSource.getTagswithDishes(tag).firstOrNull()?.dishesDB ?: emptyList()
             val resDishes = dishesDB.map { dishDB ->
-                Dish(dishDB.id, dishDB.name, dishDB.price, dishDB.weight, dishDB.description, dishDB.imageUrl)
+                Dish(
+                    dishDB.id,
+                    dishDB.name,
+                    dishDB.price,
+                    dishDB.weight,
+                    dishDB.description,
+                    dishDB.imageUrl
+                )
             }
             _dishes.value = ResultData.Success(resDishes)
 
-            if(!useCash) {
+            if (!useCash) {
                 val resTags = localDataSource.getTags().map {
                     Tag(it.name)
                 }

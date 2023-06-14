@@ -9,7 +9,10 @@ import com.smogunov.foods.data.datasource.NetworkDataSource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class CategoryRepositoriesImpl(private val networkDataSource: NetworkDataSource, private val localDataSource: LocalDataSource): CategoryRepositories {
+class CategoryRepositoriesImpl(
+    private val networkDataSource: NetworkDataSource,
+    private val localDataSource: LocalDataSource
+) : CategoryRepositories {
 
     private val _categories: MutableStateFlow<ResultData> = MutableStateFlow(ResultData.Loading)
 
@@ -31,7 +34,8 @@ class CategoryRepositoriesImpl(private val networkDataSource: NetworkDataSource,
                 _categories.value = ResultData.Success(dataPresenter)
             }
         } catch (e: Exception) {
-            _categories.value = ResultData.Error(e.message ?: "Error load categories[${e.javaClass.name}]")
+            _categories.value =
+                ResultData.Error(e.message ?: "Error load categories[${e.javaClass.name}]")
         }
     }
 

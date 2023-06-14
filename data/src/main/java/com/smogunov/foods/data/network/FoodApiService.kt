@@ -1,9 +1,7 @@
 package com.smogunov.foods.data.network
 
-import com.smogunov.domain.global.models.database.CategoryDB
 import com.smogunov.domain.global.models.network.CategoryNetwork
 import com.smogunov.domain.global.models.network.DishesNetwork
-import retrofit2.Retrofit
 import retrofit2.http.GET
 
 interface FoodApiService {
@@ -29,9 +27,10 @@ fun mergeKLists(lists: Array<ListNode?>): ListNode? {
 
     return null
 }
+
 fun main() {
-    mergeKLists(Array(2){
-      ListNode(it).add(it + 1)
+    mergeKLists(Array(2) {
+        ListNode(it).add(it + 1)
     })
     println(5)
 

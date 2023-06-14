@@ -13,7 +13,11 @@ interface LocalDataSource {
 
     suspend fun getTagswithDishes(tag: String): List<TagWithDishesDB>
 
-    suspend fun insertDishesTagAndCrossRef(dishes: List<DishDB>, tags: List<TagDB>, crossRefDB: List<DishTagCrossRefDB>)
+    suspend fun insertDishesTagAndCrossRef(
+        dishes: List<DishDB>,
+        tags: List<TagDB>,
+        crossRefDB: List<DishTagCrossRefDB>
+    )
 
     suspend fun getTags(): List<TagDB>
 

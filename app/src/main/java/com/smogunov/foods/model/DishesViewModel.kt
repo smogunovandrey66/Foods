@@ -7,7 +7,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class DishesViewModel(val useCaseDishes: UseCaseDishes): ViewModel() {
+/**
+ * Модель для блюд
+ */
+class DishesViewModel(val useCaseDishes: UseCaseDishes) : ViewModel() {
     val tagWithDishes = useCaseDishes.tagsWithDishes
     val tags = useCaseDishes.tags
 

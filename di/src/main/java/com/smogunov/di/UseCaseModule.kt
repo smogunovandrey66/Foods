@@ -33,7 +33,7 @@ val usecaseModule = module {
     }
 
     single<CartRepository> {
-        CartRepositoryImpl(get() , get())
+        CartRepositoryImpl(get(), get())
     }
 
     single {

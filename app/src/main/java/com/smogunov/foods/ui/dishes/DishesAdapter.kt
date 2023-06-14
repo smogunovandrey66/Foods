@@ -10,16 +10,21 @@ import com.bumptech.glide.Glide
 import com.smogunov.domain.global.models.presentation.Dish
 import com.smogunov.foods.R
 
-class DishesAdapter(private val dishes: List<Dish>, private val onClickDish: (Dish) -> Unit):
+/**
+ * Адаптер для блюд
+ */
+class DishesAdapter(private val dishes: List<Dish>, private val onClickDish: (Dish) -> Unit) :
     RecyclerView.Adapter<DishesAdapter.ItemDishViewHolder>() {
-    class ItemDishViewHolder(view: View, private val  onClickDish: (Dish) -> Unit): RecyclerView.ViewHolder(view) {
+    class ItemDishViewHolder(view: View, private val onClickDish: (Dish) -> Unit) :
+        RecyclerView.ViewHolder(view) {
         var dish: Dish? = null
         val image: ImageView
         val caption: TextView
+
         init {
             image = view.findViewById(R.id.img_dish)
             caption = view.findViewById(R.id.tv_name_dish)
-            view.setOnClickListener{
+            view.setOnClickListener {
                 dish?.let { dish ->
                     onClickDish(dish)
                 }
@@ -27,16 +32,16 @@ class DishesAdapter(private val dishes: List<Dish>, private val onClickDish: (Di
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: kotlin.Int): ItemDishViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemDishViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_dish, parent, false)
         return ItemDishViewHolder(view, onClickDish)
     }
 
-    override fun getItemCount(): kotlin.Int {
+    override fun getItemCount(): Int {
         return dishes.size
     }
 
-    override fun onBindViewHolder(holder: ItemDishViewHolder, position: kotlin.Int) {
+    override fun onBindViewHolder(holder: ItemDishViewHolder, position: Int) {
         val dish = dishes[position]
         holder.dish = dish
         holder.caption.text = dish.name

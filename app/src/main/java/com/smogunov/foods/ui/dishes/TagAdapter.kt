@@ -1,29 +1,41 @@
 package com.smogunov.foods.ui.dishes
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.smogunov.domain.global.models.presentation.Tag
 import com.smogunov.foods.R
+import com.smogunov.foods.databinding.ItemTagBinding
 
-class TagAdapter(private val tags: List<Tag>, private val tagClick: (String) -> Unit):
+
+/**
+ * Адаптер для тегов
+ */
+class TagAdapter(private val tags: List<Tag>, private val tagClick: (String) -> Unit) :
     RecyclerView.Adapter<TagAdapter.ItemTagViewHolder>() {
-    class ItemTagViewHolder(view: View, private val tagClick: (String) -> Unit): RecyclerView.ViewHolder(view) {
-        val btn: Button
+
+    var selectedPosition: Int = 0
+    var lastSelectedPosition: Int = -1
+
+    class ItemTagViewHolder(
+        val binding: ItemTagBinding,
+        private val tagClick: (String) -> Unit,
+        private val notifyAction: (Int) -> Unit
+    ) :
+        RecyclerView.ViewHolder(binding.root) {
+
         init {
-            btn = view.findViewById(R.id.btn_tag)
-            btn.setOnClickListener{
-                tagClick(btn.text.toString())
+            binding.tvTag.setOnClickListener {
+                tagClick(binding.tvTag.text.toString())
+                notifyAction(adapterPosition)
             }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemTagViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_tag, parent, false)
-        return ItemTagViewHolder(view, tagClick)
+        val itemBinding = ItemTagBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ItemTagViewHolder(itemBinding, tagClick, ::selectItem)
     }
 
     override fun getItemCount(): Int {
@@ -32,9 +44,21 @@ class TagAdapter(private val tags: List<Tag>, private val tagClick: (String) -> 
 
     override fun onBindViewHolder(holder: ItemTagViewHolder, position: Int) {
         val tag = tags[position]
-        holder.btn.text = tag.tagName
-        Log.d("GLOBAL_TAG_LOG", "TagAdapter onBindViewHolder tagName=${tag.tagName}")
+        holder.binding.tvTag.text = tag.tagName
+
+        if (selectedPosition == holder.adapterPosition) {
+            holder.binding.tvTag.background =
+                ContextCompat.getDrawable(holder.itemView.context, R.drawable.shape_rounded_blue)
+        } else {
+            holder.binding.tvTag.background =
+                ContextCompat.getDrawable(holder.itemView.context, R.drawable.shape_rounded_gray)
+        }
     }
 
-
+    private fun selectItem(pos: Int) {
+        lastSelectedPosition = selectedPosition
+        selectedPosition = pos
+        notifyItemChanged(selectedPosition)
+        notifyItemChanged(lastSelectedPosition)
+    }
 }

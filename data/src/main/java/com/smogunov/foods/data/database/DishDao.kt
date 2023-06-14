@@ -36,6 +36,7 @@ interface DishDao {
 
     @Query("DELETE FROM dishes_tags")
     suspend fun clearDishTagRef()
+
     @Insert
     suspend fun insertDishTagRef(disTagRef: List<DishTagCrossRefDB>)
 }

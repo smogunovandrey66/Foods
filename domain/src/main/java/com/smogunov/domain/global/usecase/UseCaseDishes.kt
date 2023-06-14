@@ -6,7 +6,7 @@ class UseCaseDishes(private val dishRepository: DishRepository) {
     val tagsWithDishes = dishRepository.dishes
     val tags = dishRepository.tags
 
-    suspend fun load(useCash: Boolean, tag: String){
+    suspend fun load(useCash: Boolean, tag: String) {
         dishRepository.load(useCash, tag)
     }
 }

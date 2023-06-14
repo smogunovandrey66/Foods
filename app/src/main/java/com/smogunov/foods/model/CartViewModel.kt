@@ -5,7 +5,11 @@ import androidx.lifecycle.viewModelScope
 import com.smogunov.domain.global.usecase.UseCaseCart
 import kotlinx.coroutines.launch
 
-class CartViewModel(private val useCaseCart: UseCaseCart): ViewModel() {
+
+/**
+ * Модель для корзины
+ */
+class CartViewModel(private val useCaseCart: UseCaseCart) : ViewModel() {
     val cartItems = useCaseCart.cartItems
     val resultChangeCartItem = useCaseCart.resultChangeCartItem
 

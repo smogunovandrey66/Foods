@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 import androidx.room.Relation
 
 @Entity("dishes")
-data class DishDB (
+data class DishDB(
     @PrimaryKey
     val id: Int,
     val name: String,
@@ -34,14 +34,22 @@ data class DishTagCrossRefDB(
 data class DishWithTagsDB(
     @Embedded
     val dishDB: DishDB,
-    @Relation(parentColumn = "id", entityColumn = "name", associateBy = Junction(DishTagCrossRefDB::class))
+    @Relation(
+        parentColumn = "id",
+        entityColumn = "name",
+        associateBy = Junction(DishTagCrossRefDB::class)
+    )
     val tagsDB: List<TagDB>
 )
 
 data class TagWithDishesDB(
     @Embedded
     val tagDB: TagDB,
-    @Relation(parentColumn = "name", entityColumn = "id", associateBy = Junction(DishTagCrossRefDB::class))
+    @Relation(
+        parentColumn = "name",
+        entityColumn = "id",
+        associateBy = Junction(DishTagCrossRefDB::class)
+    )
     val dishesDB: List<DishDB>
 )
 

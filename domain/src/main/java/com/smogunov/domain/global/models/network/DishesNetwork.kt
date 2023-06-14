@@ -14,6 +14,7 @@ data class DishesNetworkItem(
     @SerializedName("tegs")
     val tags: List<String>?
 )
+
 data class DishesNetwork(
     val dishes: List<DishesNetworkItem>
 )

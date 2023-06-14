@@ -6,19 +6,19 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp">
+        android:padding="5dp">
         <ImageView
             android:id="@+id/img_dish"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:src="@drawable/rice_with_vegetables"/>
         <ImageView
             android:id="@+id/img_favorite"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             app:layout_constraintEnd_toStartOf="@+id/img_cancel"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="10dp"
@@ -26,8 +26,8 @@
             android:src="@drawable/favorite"/>
         <ImageView
             android:id="@+id/img_cancel"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_margin="10dp"
@@ -71,36 +71,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_description"
             android:text="Добавить в корзину"/>
-        <LinearLayout
-            android:id="@+id/layout_change_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_description">
-            <ImageView
-                android:id="@+id/img_minus"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/shape_rounded_gray"
-                android:src="@drawable/minus"/>
-            <TextView
-                android:id="@+id/tv_count"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/shape_rounded_gray"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:text="1"/>
-            <ImageView
-                android:id="@+id/img_plus"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/shape_rounded_gray"
-                android:src="@drawable/plus"
-                android:textSize="25sp"/>
-        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

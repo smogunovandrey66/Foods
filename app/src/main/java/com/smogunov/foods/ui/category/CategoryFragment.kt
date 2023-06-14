@@ -11,15 +11,15 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smogunov.domain.global.models.presentation.Category
 import com.smogunov.domain.global.resultdata.ResultData
+import com.smogunov.domain.global.utils.log
 import com.smogunov.foods.databinding.FragmentCategoryBinding
 import com.smogunov.foods.model.CategoriesViewModel
-import com.smogunov.domain.global.utils.log
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 
 /**
- * A simple [Fragment] subclass as the default destination in the navigation.
+ * Фрагмент для категорий
  */
 class CategoryFragment : Fragment() {
 
@@ -33,7 +33,7 @@ class CategoryFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         log("CategoryFragment onCreateView categoryViewModel=$categoryViewModel")
         _binding = FragmentCategoryBinding.inflate(inflater, container, false)
         return binding.root
@@ -43,21 +43,27 @@ class CategoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                categoryViewModel.category.collect{
-                    when(it) {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                categoryViewModel.category.collect {
+                    when (it) {
                         ResultData.Loading -> {
                             log("CategoryFragment onViewCreated: resultData=Loading")
                         }
+
                         is ResultData.Error -> {
                             log("CategoryFragment onViewCreated: resultData=Error(${it.message})")
                         }
+
                         else -> {
                             val dataSuccess = it as ResultData.Success<*>
                             val categories = dataSuccess.value as List<Category>
                             log("CategoryFragment onViewCreated: resultData=Success($categories)")
                             val linearLayoutManager =
-                                LinearLayoutManager(this@CategoryFragment.context, LinearLayoutManager.VERTICAL, false)
+                                LinearLayoutManager(
+                                    this@CategoryFragment.context,
+                                    LinearLayoutManager.VERTICAL,
+                                    false
+                                )
                             binding.rvCategory.layoutManager = linearLayoutManager
                             binding.rvCategory.adapter = CategoryAdapter(categories)
                         }
@@ -67,18 +73,6 @@ class CategoryFragment : Fragment() {
         }
 
         categoryViewModel.load(false)
-
-
-//        binding.btnTest.setOnClickListener{
-//            lifecycleScope.launch {
-//                val categories = foodApiService.getCategories()
-//                log("categories = ${categories.categories}")
-//            }
-//        }
-
-//        binding.buttonFirst.setOnClickListener {
-//            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-//        }
     }
 
     override fun onDestroyView() {
