@@ -11,27 +11,3 @@ interface FoodApiService {
     @GET("c7a508f2-a904-498a-8539-09d96785446e")
     suspend fun getDishes(): DishesNetwork
 }
-
-class ListNode(val value: Int) {
-    var next: ListNode? = null
-    fun add(value: Int): ListNode {
-        next = ListNode(value)
-        return next!!
-    }
-}
-
-fun mergeKLists(lists: Array<ListNode?>): ListNode? {
-    lists.forEach {
-
-    }
-
-    return null
-}
-
-fun main() {
-    mergeKLists(Array(2) {
-        ListNode(it).add(it + 1)
-    })
-    println(5)
-
-}

@@ -1,5 +1,6 @@
 package com.smogunov.foods.ui.cart
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,16 +24,17 @@ import java.util.Currency
  * Фрагмент для отображения элементов корзины
  */
 class CartFragment : Fragment() {
-    lateinit var binding: FragmentCartBinding
+    private lateinit var binding: FragmentCartBinding
     private val cartVieModel: CartViewModel by inject()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentCartBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewLifecycleOwner.lifecycleScope.launch {

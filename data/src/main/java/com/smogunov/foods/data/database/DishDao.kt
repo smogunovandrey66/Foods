@@ -11,9 +11,6 @@ import com.smogunov.domain.global.models.database.TagWithDishesDB
 
 @Dao
 interface DishDao {
-    @Query("SELECT * FROM dishes")
-    suspend fun getAllDishes(): List<DishDB>
-
     @Transaction
     @Query("SELECT * FROM tags WHERE name = :tagName")
     suspend fun getTagsByName(tagName: String): List<TagWithDishesDB>
