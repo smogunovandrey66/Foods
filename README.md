@@ -19,4 +19,4 @@ Foods App demonstrates modern Android development with Koin, Coroutines, Jetpack
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit): Construct the REST APIs and paging network data.
 - [Modularization](https://developer.android.com/topic/modularization)
 
-<img src="/previews/Foods_app.gif"/>
+<img src="/previews/Foods.gif"/>
